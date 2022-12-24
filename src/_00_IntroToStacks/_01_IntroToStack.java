@@ -15,19 +15,22 @@ public class _01_IntroToStack {
     	for(int i =0; i<100; i++) {
     		double num = rand.nextDouble()*101;
     		values.push(num);
+    		System.out.println(num);
     	}
         // 3. Ask the user to enter in two numbers between 0 and 100, inclusive. 
     		String val1 = JOptionPane.showInputDialog("Enter 1 number between 0 and 100 inclusive");
     		String val2 = JOptionPane.showInputDialog("Enter 1 number between 0 and 100 inclusive");
-    		int value1 = String.parseInt();
+    		int value1 = Integer.parseInt(val1);
+    		int value2 = Integer.parseInt(val2);
     		//.parseInt
     		
         // 4. Pop all the elements off of the Stack. Every time a double is popped that is
         //    between the two numbers entered by the user, print it to the screen.
-    		for(int i =0; i< 100; i++) {
+    		System.out.println("Values between " + value1 + " and " + value2);
+    		while(values.isEmpty() == false) {
     			double result = values.pop();
-    			if() {
-    				
+    			if(value1 < result && value2 > result) {
+    				System.out.println(result);
     			}
     		}
 
