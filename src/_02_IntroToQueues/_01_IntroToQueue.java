@@ -1,4 +1,9 @@
 package _02_IntroToQueues;
+
+import java.util.ArrayDeque;
+import java.util.Random;
+import java.util.Stack;
+
 /* 
  * OBJECTIVE:
  * 1. Push 100 double values onto a Stack.
@@ -34,24 +39,50 @@ public class _01_IntroToQueue {
     public static void main(String[] args) {
         // 1. Create a Stack of Doubles using the Stack class
         //    Note: you have to use the capitalized Double and not double
-
+    	Stack<Double> stack = new Stack<Double>();
         // 2. Use a loop to add 100 random doubles between 0 and 100 to the Stack
-
+    	for(double i =0.0; i<100; i++) {
+    		stack.push(i);
+    	}
         // 3. Create a Queue of Doubles using the ArrayDeque class
         //    Note: you have to use the capitalized Double and not double
-
+    	ArrayDeque<Double> newStack = new ArrayDeque<Double>();
         // 4. Pop off 5 elements from the Stack and add them to the Queue 
-
+    	double value;
+    	for(int i = 0; i<5; i++) {
+    		value = stack.pop();
+    		newStack.push(value);
+    	}
         // 5. Print and remove a random number of elements, from 1 to 5 elements,
         //    from the front of the Queue. Example:
         //    "removing 3 elements from Queue: 25 57 2"
-
+    	double newVal;
+    	Random rand = new Random();
+    	int num = rand.nextInt(5);
+    	for(int i =0; i<num; i++) {
+    		newVal = stack.pop();
+    		newStack.push(newVal);
+    		System.out.println(newVal);
+    	}
         // 6. Pop off as many elements from the stack to fill the Queue with 5
         //    elements. If there aren't enough elements in the Stack to fill the 
         //    queue, fill the queue as much as possible. 
-
+    	double val1;
+    	int req = 5-newStack.size();
+    	for(int i = 0; i<req; i++) {
+    		if(stack.size()>0) {
+    		val1 = stack.pop();
+    		newStack.push(val1);
+    		}
+    	}
         // 7. Loop until there are no more elements in either the Stack or Queue
         //    and all the elements are printed
-        
+        while(newStack.size() > 0) {
+        	if(stack.size()>0) {
+        	val1 = stack.pop();
+    		newStack.push(val1);
+    		System.out.println(val1);
+        }
+        }
     }
 }
