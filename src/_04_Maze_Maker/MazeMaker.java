@@ -30,16 +30,16 @@ public class MazeMaker {
 
 		if (x == 0) {
 			maze.getCell(x, y).setWestWall(false);
-			maze.getCell(r-1, rand.nextInt(c)).setEastWall(false);
+			//maze.getCell(x-1, y).setEastWall(false);
 		} else if (x == r) {
 			maze.getCell(x, y).setEastWall(false);
-			maze.getCell(r-1, rand.nextInt(c)).setWestWall(false);
+			//maze.getCell(x+1,y) .setWestWall(false);
 		} else if (y == 0) {
 			maze.getCell(x, y).setSouthWall(false);
-			maze.getCell(rand.nextInt(r), c-1).setNorthWall(false);
+			//maze.getCell(x, y-1).setNorthWall(false);
 		} else if (y == c) {
 			maze.getCell(x, y).setNorthWall(false);
-			maze.getCell(rand.nextInt(r), c-1).setSouthWall(false);
+			//maze.getCell(x, y-1).setSouthWall(false);
 		}
 
 		// 2. select a random cell in the maze to start
@@ -67,21 +67,21 @@ public class MazeMaker {
 			// C2. push it to the stack
 			uncheckedCells.push(neighbors.get(randomVal));
 			// C3. remove the wall between the two cells
-			if (neighbors.get(randomVal).getRow() == currentCell.getRow() - 1) {
-				currentCell.setSouthWall(false);
-				randCell.setNorthWall(false);
-			}
-			if (neighbors.get(randomVal).getRow() == currentCell.getRow() + 1) {
+			if (randCell.getRow() == currentCell.getRow() - 1) {
 				currentCell.setNorthWall(false);
 				randCell.setSouthWall(false);
 			}
-			if (neighbors.get(randomVal).getCol() == currentCell.getCol() - 1) {
-				currentCell.setEastWall(false);
-				randCell.setWestWall(false);
+			if (randCell.getRow() == currentCell.getRow() + 1) {
+				currentCell.setSouthWall(false);
+				randCell.setNorthWall(false);
 			}
-			if (neighbors.get(randomVal).getCol() == currentCell.getCol() + 1) {
+			if (randCell.getCol() == currentCell.getCol() - 1) {
 				currentCell.setWestWall(false);
 				randCell.setEastWall(false);
+			}
+			if (randCell.getCol() == currentCell.getCol() + 1) {
+				currentCell.setEastWall(false);
+				randCell.setWestWall(false);
 			}
 			// C4. make the new cell the current cell and SET it as visited
 			currentCell = randCell;
